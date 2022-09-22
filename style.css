@@ -1,0 +1,165 @@
+@keyframes body_anim {
+    from {
+        transform: translateY(-120%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+body {
+    width: 50%;
+    margin: auto;
+    background: #f2efe1;
+    font-family: sans-serif;
+
+    animation-name: body_anim;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+div {
+    text-align: center;
+    border: 2px solid black;
+    margin: 15px 15px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+table,
+th,
+td {
+    font-size: 15px;
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 95%;
+}
+
+th {
+    background-color: #3399ff;
+    height: 30px;
+}
+
+/* псевдокласс */
+tr:hover {
+    background-color: #3399ff;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 5px 0;
+    border: none;
+}
+
+.value_label {
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.x_text,
+.x_value,
+.r_value,
+.custom_button {
+    cursor: pointer;
+}
+
+.x_text {
+    font-size: 18px;
+}
+
+.x_value {
+    margin-left: 20px;
+    width: 18px;
+    height: 18px;
+}
+
+.y_value {
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 300px;
+}
+
+/* псевдокласс */
+.y_value:hover {
+    transform: scale(1.02, 1.02);
+    border: 2px solid #3385ff;
+}
+
+/* псевдоэлемент */
+::placeholder {
+    text-align: center;
+}
+
+.r_value,
+.custom_button {
+    background-color: #3399ff;
+    border: none;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+.r_value {
+    border-radius: 25px;
+    padding: 9px 4px;
+    width: 5%;
+}
+
+.custom_button {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 14px;
+    width: 20%;
+}
+
+/* псевдокласс */
+.r_value:hover,
+.custom_button:hover {
+    background-color: #3385ff
+}
+
+/* псевдокласс */
+.r_value:active,
+.custom_button:active {
+    background-color: #3385ff;
+    transform: translateY(4px);
+}
+
+/* идентификатор */
+#title {
+    color: black;
+    font-size: 20px;
+    font-family: serif;
+    line-height: 28px;
+}
+
+/* идентификатор */
+#graph {
+    width: 35%;
+}
+
+/* идентификатор */
+#logo {
+    border: none;
+}
+
+/* дочерний элемент */
+#logo>img {
+    width: 30%;
+}

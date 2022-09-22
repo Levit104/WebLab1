@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Lab №1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h1>Лабораторная работа №1</h1>
+    </div>
+    <div id="title">
+        Герасимов Артём Кириллович
+        <br>
+        Группа P32111
+        <br>
+        Вариант 804
+    </div>
+    <div>
+        <h1>График</h1>
+        <img src="img/areas-transparent.png" alt="Изображение графика" id="graph">
+    </div>
+    <div>
+        <h1>Выбор координат и значений</h1>
+        <form autocomplete="off" id="form_with_validation">
+            <span class="value_label">Координата X:</span>
+            <!-- label нужен чтобы текст был кликабелен -->
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="-2" class="x_value" onclick="setX(this)"> -2
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="-1.5" class="x_value" onclick="setX(this)"> -1.5
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="-1" class="x_value" onclick="setX(this)"> -1
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="-0.5" class="x_value" onclick="setX(this)"> -0.5
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="0" class="x_value" onclick="setX(this)"> 0
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="0.5" class="x_value" onclick="setX(this)"> 0.5
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="1" class="x_value" onclick="setX(this)"> 1
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="1.5" class="x_value" onclick="setX(this)"> 1.5
+            </label>
+            <label class="x_text">
+                <input type="checkbox" name="x_value" value="2" class="x_value" onclick="setX(this)"> 2
+            </label>
+            <br><br>
+            <span class="value_label">Координата Y:</span>
+            <input type="text" name="y_value" placeholder="от -3 до 3 не включительно, до сотых" maxlength="4" class="y_value">
+            <br><br>
+            <span class="value_label">Значение R:&nbsp<span id="current_value"></span></span>
+            <input type="button" name="r_value" value="1" class="r_value" onclick="setR(this)">
+            <input type="button" name="r_value" value="1.5" class="r_value" onclick="setR(this)">
+            <input type="button" name="r_value" value="2" class="r_value" onclick="setR(this)">
+            <input type="button" name="r_value" value="2.5" class="r_value" onclick="setR(this)">
+            <input type="button" name="r_value" value="3" class="r_value" onclick="setR(this)">
+            <br><br>
+            <input type="submit" value="Подтвердить" class="custom_button">
+            <input type="reset" value="Сбросить" class="custom_button">
+            <br><br>
+        </form>
+    </div>
+    <div>
+        <h1>Предыдущие запросы</h1>
+        <table id="result_table">
+            <thead>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Результат</th>
+                <th>Время запроса</th>
+                <th>Время выполнения</th>
+            </thead>
+            <tbody>
+                <!-- Результаты -->
+            </tbody>
+        </table>
+        <br>
+        <input type="button" value="Очистить таблицу" class="custom_button" id="clear_button">
+        <br><br>
+    </div>
+    <div id="logo">
+        <img src="img/logo-horizontal.png" alt="Университет ИТМО">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="validation.js"></script>
+</body>
+
+</html>
