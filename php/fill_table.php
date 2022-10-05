@@ -15,7 +15,6 @@ $timezone = @$_POST['timezone'];
 
 function validateNumber($val, $min, $max, $strict) {
 	if ($strict) {
-		$val = str_replace(',', '.', $val);
 		return isset($val) && is_numeric($val) && ($val > $min) && ($val < $max);
 	}
 	return isset($val) && is_numeric($val) && ($val >= $min) && ($val <= $max);

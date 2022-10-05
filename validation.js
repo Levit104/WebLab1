@@ -4,7 +4,7 @@ let rValue = ''; // переменная для хранения значени�
 
 // проверка является ли строка числом
 function isNumeric(string) {
-    let number = parseFloat(string.replace(',', '.'));
+    let number = parseFloat(string);
     return !isNaN(number) && isFinite(number);
 }
 
@@ -53,8 +53,11 @@ function checkY() {
     } else if (yValue.length > 1 && yValue.slice(-1) === '0') {
         yElement.parentElement.insertBefore(createError('Лишние нули'), yElement);
         return false;
-    } else if (yValue.slice(-1) === '.' || yValue.slice(-1) === ',') {
+    } else if (yValue.slice(-1) === '.' || yValue.slice(-1) === ',' || /[,]{2,}/.test(yValue) || /[.]{2,}/.test(yValue)) {
         yElement.parentElement.insertBefore(createError('Лишний разделитель'), yElement);
+        return false;
+    } else if (yValue.search(',') != -1) {
+        yElement.parentElement.insertBefore(createError('Разделитель - точка'), yElement);
         return false;
     }
 
