@@ -1,22 +1,22 @@
-@keyframes body_anim {
-    from {
-        transform: translateY(-120%);
-    }
+/*@keyframes body_anim {*/
+/*    from {*/
+/*        transform: translateY(-120%);*/
+/*    }*/
 
-    to {
-        transform: translateY(0);
-    }
-}
+/*    to {*/
+/*        transform: translateY(0);*/
+/*    }*/
+/*}*/
 
 body {
-    width: 50%;
+    width: 70%;
     margin: auto;
     background: #f2efe1;
     font-family: sans-serif;
 
-    animation-name: body_anim;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /*animation-name: body_anim;*/
+    /*animation-duration: 1s;*/
+    /*animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);*/
 }
 
 div {
@@ -36,10 +36,11 @@ td {
     margin: auto;
     border: 1px solid black;
     border-collapse: collapse;
+    text-align: center;
 }
 
 table {
-    width: 95%;
+    width: 70%;
 }
 
 th {
@@ -85,7 +86,7 @@ tr:hover {
     height: 18px;
 }
 
-.y_value {
+#y_value {
     text-align: center;
     font-size: 15px;
     border: none;
@@ -95,9 +96,9 @@ tr:hover {
 }
 
 /* псевдокласс */
-.y_value:hover {
+#y_value:focus {
+    border: 1px solid #3385ff;
     transform: scale(1.02, 1.02);
-    border: 2px solid #3385ff;
 }
 
 /* псевдоэлемент */
@@ -118,20 +119,20 @@ tr:hover {
 .r_value {
     border-radius: 25px;
     padding: 9px 4px;
-    width: 5%;
+    width: 3%;
 }
 
 .custom_button {
+    /*width: 20%;*/
     border-radius: 30px;
     padding: 10px 25px;
     font-size: 14px;
-    width: 20%;
 }
 
 /* псевдокласс */
 .r_value:hover,
 .custom_button:hover {
-    background-color: #3385ff
+    background-color: #3385ff;
 }
 
 /* псевдокласс */
@@ -161,5 +162,5 @@ tr:hover {
 
 /* дочерний элемент */
 #logo>img {
-    width: 30%;
+    width: 25%;
 }

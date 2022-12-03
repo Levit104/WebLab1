@@ -1,66 +1,82 @@
 <?php
 
-// $scriptStartTime = microtime(true);
-
 session_start();
 
-if (!isset($_SESSION['data'])) {
+if (!isset($_SESSION['data']))
+{
 	$_SESSION['data'] = array();
 }
 
-$x = @$_POST['x_value'];
-$y = @$_POST['y_value'];
-$r = @$_POST['r_value'];
+$x = @$_POST['x'];
+$y = @$_POST['y'];
+$r = @$_POST['r'];
 $timezone = @$_POST['timezone'];
 
-function validateNumber($val, $min, $max, $strict) {
-	if ($strict) {
-		return isset($val) && is_numeric($val) && ($val > $min) && ($val < $max);
-	}
-	return isset($val) && is_numeric($val) && ($val >= $min) && ($val <= $max);
+function validValue($val, $min, $max, $isStrict): bool
+{
+    return $isStrict ?
+        isset($val) && is_numeric($val) && ($val > $min) && ($val < $max) :
+        isset($val) && is_numeric($val) && ($val >= $min) && ($val <= $max);
 }
 
-function validateTimezone($timezone) {
+function validTimezone($timezone): bool
+{
 	return isset($timezone);
 }
 
-function checkLeftArea($x, $y, $r) {
+function insideTriangle($x, $y, $r): bool
+{
 	return ($x <= 0 && $y >= 0 && ($y <= $x + $r/2));
 }
 
-function checkRightArea($x, $y, $r) {
+function insideQuadrant($x, $y, $r): bool
+{
 	return ($x >= 0 && $y >= 0 && sqrt($x ** 2 + $y ** 2) <= $r/2);
 }
 
-function checkBottomArea($x, $y, $r) {
+function insideRectangle($x, $y, $r): bool
+{
 	return ($x <= 0 && $y <= 0 && $x >= -$r && $y >= -$r);
 }
 
-if (validateNumber($x, -2, 2, FALSE) && validateNumber($y, -3, 3, TRUE) && validateNumber($r, 1, 3, FALSE) && validateTimezone($timezone)) {
-	$inArea = checkLeftArea($x, $y, $r) || checkRightArea($x, $y, $r) || checkBottomArea($x, $y, $r);
+function insideArea($x, $y, $r): bool
+{
+    return insideTriangle($x, $y, $r) || insideQuadrant($x, $y, $r) || insideRectangle($x, $y, $r);
+}
 
-	$hitFact = $inArea ? 'Попадание' : 'Промах';
+$allValid = validValue($x, -2, 2, FALSE) &&
+    validValue($y, -3, 3, TRUE) &&
+    validValue($r, 1, 3,FALSE) &&
+    validTimezone($timezone);
+
+if ($allValid) {
+    $isInside = insideArea($x, $y, $r) ? 'Попадание' : 'Промах';
 
 	$currentTime = date('d-m-Y G:i:s', time() - $timezone * 60);
-	// $currentTime = date('d-m-Y G:i:s', strtotime($timezone));
-
 	$executionTime = round(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], 7);
-	// $executionTime = round(microtime(true) - $scriptStartTime, 7);
 
-	$answer = array('x' => $x, 'y' => $y, 'r' => $r, 'hitFact' => $hitFact, 'currentTime' => $currentTime, 'executionTime' => $executionTime);
+	$answer = array('x' => $x, 'y' => $y, 'r' => $r,
+        'isInside' => $isInside,
+        'currentTime' => $currentTime,
+        'executionTime' => $executionTime);
 
-	array_push($_SESSION['data'], $answer);
+    $_SESSION['data'][] = $answer;
 }
 
-foreach ($_SESSION['data'] as $elem) {
-	echo '<tr class="columns">';
-	echo '<td>' . $elem['x'] . '</td>';
-	echo '<td>' . $elem['y'] . '</td>';
-	echo '<td>' . $elem['r'] . '</td>';
-	echo '<td>' . $elem['hitFact']  . '</td>';
-	echo '<td>' . $elem['currentTime']  . '</td>';
-	echo '<td>' . $elem['executionTime'] . '</td>';
-	echo '</tr>';
+function fillTable(): void
+{
+    foreach ($_SESSION['data'] as $elem) {
+        echo '<tr class="columns">';
+        echo '<td>' . $elem['x'] . '</td>';
+        echo '<td>' . $elem['y'] . '</td>';
+        echo '<td>' . $elem['r'] . '</td>';
+        echo '<td>' . $elem['isInside'] . '</td>';
+        echo '<td>' . $elem['currentTime'] . '</td>';
+        echo '<td>' . $elem['executionTime'] . '</td>';
+        echo '</tr>';
+    }
 }
+
+fillTable();
 
 ?>
